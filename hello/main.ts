@@ -4,7 +4,10 @@
 
 import { serve } from "https://deno.land/std@0.140.0/http/server.ts";
 
-serve((_request: Request) => {
+serve((request: Request) => {
+    if (request.url.includes("crash")) {
+        throw Error("We're crashing this party");
+    }
     return new Response("<h1>Hello World!</h1>", {
         headers: { "content-type": "text/html" },
     });
