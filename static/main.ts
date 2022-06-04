@@ -3,7 +3,7 @@ import { serve } from "https://deno.land/std@0.140.0/http/server.ts";
 async function handleRequest(request: Request): Promise<Response> {
     const { pathname } = new URL(request.url);
     switch (pathname) {
-        case "index.html": {
+        case "/index.html": {
             const contents = await Deno.readFile("./static/index.html");
             return new Response(contents, {
                 headers: {
@@ -11,7 +11,7 @@ async function handleRequest(request: Request): Promise<Response> {
                 },
               });
         }
-        case "styles.css": {
+        case "/styles.css": {
             const contents = await Deno.readFile("./static/styles.css");
             return new Response(contents, {
                 headers: {
@@ -20,7 +20,7 @@ async function handleRequest(request: Request): Promise<Response> {
               });
         }
         default: {
-            return new Response(`<h1>Not found</h1>`, {
+            return new Response(`<h1>Not found (${pathname})</h1>`, {
                 status: 404,
                 statusText: "Not found",
                 headers: { "content-type": "text/html" },
