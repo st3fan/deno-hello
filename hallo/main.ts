@@ -5,6 +5,7 @@
 import { serve } from "https://deno.land/std@0.140.0/http/server.ts";
 
 serve((_request: Request) => {
+    console.log("This is the request handler");
     return new Response("<h1>Hallo, Wereld!</h1>", {
         headers: { "content-type": "text/html" },
     });
