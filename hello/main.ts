@@ -5,10 +5,10 @@
 import { serve } from "https://deno.land/std@0.140.0/http/server.ts";
 
 serve((request: Request) => {
-    if (request.url.includes("crash")) {
-        throw Error("We're crashing this party");
-    }
-    return new Response("<h1>Hello World!</h1>", {
+    const url = new URL(request.url);
+    const name = url.searchParams.get('name') || Deno.env.get('DEFAULT_NAME');
+
+    return new Response(`<h1>Hello, ${name}!</h1>`, {
         headers: { "content-type": "text/html" },
     });
 });
