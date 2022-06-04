@@ -3,7 +3,7 @@ import { serve } from "https://deno.land/std@0.140.0/http/server.ts";
 async function handleRequest(request: Request): Promise<Response> {
     const { pathname } = new URL(request.url);
     switch (pathname) {
-        case "/index.html": {
+        case "/": {
             const contents = await Deno.readFile("./static/index.html");
             return new Response(contents, {
                 headers: {
